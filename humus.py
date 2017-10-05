@@ -1,7 +1,11 @@
 from pyquery import PyQuery as pq
 import urllib
 
-d = pq(url=sys.argv[1])
+site = sys.argv[1]
+search_word = sys.argv[2]
+mail_to = sys.argv[3]
+
+d = pq(url=site)
 
 #if file doesn't exist, create it. Otherwise, open it for both read/write
 f = open('site', 'a+')
@@ -15,7 +19,7 @@ f.close()
 print(text)
 
 #search the entire body of the HTML for the keyword
-found = d('body:contains('+sys.argv[2]+')').text()
+found = d('body:contains('+search_word+')').text()
 print(found)
 
 if (found != text):
@@ -31,8 +35,8 @@ if (found != text):
 	gmail_password = '123passwor'
 
 	sent_from = gmail_user  
-	to = [sys.argv[3]]  
-	subject = 'New changes found in ' + sys.argv[1]  
+	to = [mail_to]  
+	subject = 'New changes found in ' + site  
 	body = found
 
 	email_text = """\  
