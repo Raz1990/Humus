@@ -7,8 +7,6 @@ site = sys.argv[1]
 search_word = sys.argv[2]
 mail_to = sys.argv[3]
 
-print(search_word)
-
 d = pq(url=site)
 
 #if file doesn't exist, create it. Otherwise, open it for both read/write
@@ -46,7 +44,7 @@ if (found != text):
 		server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 		server.ehlo()
 		server.login(gmail_user, gmail_password)
-		server.sendmail(sent_from, to, email_text)
+		server.sendmail(sent_from, to, email_text.encode('utf-8'))
 		server.close()
 	except:
 		print("Unexpected error")
