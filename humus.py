@@ -1,3 +1,4 @@
+import sys
 from pyquery import PyQuery as pq
 import urllib
 import smtplib
@@ -5,6 +6,8 @@ import smtplib
 site = sys.argv[1]
 search_word = sys.argv[2]
 mail_to = sys.argv[3]
+
+print(search_word)
 
 d = pq(url=site)
 
@@ -46,4 +49,4 @@ if (found != text):
 		server.sendmail(sent_from, to, email_text)
 		server.close()
 	except:
-    	print("Unexpected error")
+		print("Unexpected error")
